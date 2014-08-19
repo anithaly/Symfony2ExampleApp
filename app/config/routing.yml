@@ -1,5 +1,7 @@
 acme_user:
     resource: "@AcmeUserBundle/Controller/"
+acme_publication:
+    resource: "@AcmePublicationBundle/Controller/"
     type:     annotation
     prefix:   /
 
