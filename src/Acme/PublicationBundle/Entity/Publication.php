@@ -2,6 +2,7 @@
 
 namespace Acme\PublicationBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +26,13 @@ class Publication
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank(message = "Please enter a title")
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "255",
+     *      minMessage = "Your title name must be at least {{ limit }} characters length",
+     *      maxMessage = "Your title name cannot be longer than {{ limit }} characters length"
+     * )
      */
     private $title;
 
@@ -32,6 +40,7 @@ class Publication
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message = "Please enter a content")
      */
     private $content;
 
@@ -39,7 +48,7 @@ class Publication
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +71,7 @@ class Publication
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -85,7 +94,7 @@ class Publication
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {

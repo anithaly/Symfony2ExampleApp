@@ -15,11 +15,11 @@ class PublicationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
+            ->add('title', 'text', ['required' => false])
+            ->add('content', 'textarea', ['required' => false])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

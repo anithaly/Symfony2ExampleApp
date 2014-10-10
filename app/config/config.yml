@@ -31,9 +31,10 @@ twig:
 
 # Assetic Configuration
 assetic:
+    #http://stackoverflow.com/questions/10863475/assetic-generating-links-but-no-files
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles: []
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
