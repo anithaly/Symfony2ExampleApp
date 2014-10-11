@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Content</th>
                 <th>Actions</th>
             </tr>
@@ -17,6 +18,11 @@
             <tr>
                 <td><a href="{{ path('publication_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
+                <td>
+                    {% if entity.category %}
+                        {{ entity.category.name }}
+                    {% endif %}
+                </td>
                 <td>{{ entity.content }}</td>
                 <td>
                 <ul>

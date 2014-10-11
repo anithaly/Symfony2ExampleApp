@@ -44,6 +44,11 @@ class Publication
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="publications")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     **/
+    private $category;
 
     /**
      * Get id
@@ -99,5 +104,28 @@ class Publication
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

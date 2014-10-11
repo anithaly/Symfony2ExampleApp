@@ -16,6 +16,11 @@ class PublicationType extends AbstractType
     {
         $builder
             ->add('title', 'text', ['required' => false])
+            ->add('category', 'entity', [
+                'class' => 'Acme\PublicationBundle\Entity\Category',
+                'property' => 'name'
+                ]
+            )
             ->add('content', 'textarea', ['required' => false])
         ;
     }

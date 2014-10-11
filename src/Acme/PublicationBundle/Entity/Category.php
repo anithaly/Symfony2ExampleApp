@@ -3,6 +3,7 @@
 namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+// use Doctrine\Common\Collections\Collection\ArrayCollection;
 
 /**
  * Category
@@ -28,11 +29,19 @@ class Category
      */
     private $name;
 
+    /**
+     * ORM\OneToMany(targetEntity="Publication", mappedBy="category")
+     **/
+    // private $publications;
+
+    // public function __construct() {
+    //     $this->publications = new ArrayCollection();
+    // }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +64,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
