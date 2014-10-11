@@ -22,6 +22,13 @@ class PublicationType extends AbstractType
                 ]
             )
             ->add('content', 'textarea', ['required' => false])
+            ->add('tags', 'entity', [
+                'class' => 'Acme\PublicationBundle\Entity\Tag',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true
+                ]
+            )
         ;
     }
 

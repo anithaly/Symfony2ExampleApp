@@ -21,6 +21,14 @@
                 <th>Content</th>
                 <td>{{ entity.content }}</td>
             </tr>
+            <tr>
+                <th>Tags</th>
+                <td>
+                    {% for tag in entity.tags %}
+                        <p>{{ tag.name }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 

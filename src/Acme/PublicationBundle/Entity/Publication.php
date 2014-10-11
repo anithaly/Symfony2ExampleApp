@@ -4,6 +4,7 @@ namespace Acme\PublicationBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection\ArrayCollection;
 
 /**
  * Publication
@@ -49,6 +50,16 @@ class Publication
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      **/
     private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="publications")
+     * @ORM\JoinTable(name="publications_tag")
+     **/
+    private $tags;
+
+    public function __construct() {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -128,4 +139,21 @@ class Publication
     {
         return $this->category;
     }
+
+    /**
+     * Get tags
+     *
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        $tag->addPublication($this); // synchronously updating inverse side
+        $this->tags[] = $tag;
+    }
+
 }
