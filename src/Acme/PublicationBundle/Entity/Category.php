@@ -30,15 +30,6 @@ class Category
     private $name;
 
     /**
-     * ORM\OneToMany(targetEntity="Publication", mappedBy="category")
-     **/
-    // private $publications;
-
-    // public function __construct() {
-    //     $this->publications = new ArrayCollection();
-    // }
-
-    /**
      * Get id
      *
      * @return integer

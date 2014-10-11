@@ -57,7 +57,13 @@ class Publication
      **/
     private $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="publication")
+     **/
+    private $comments;
+
     public function __construct() {
+        $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
@@ -154,6 +160,16 @@ class Publication
     {
         $tag->addPublication($this); // synchronously updating inverse side
         $this->tags[] = $tag;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return array
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 
 }

@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\PublicationBundle\Entity\Publication;
+use Acme\PublicationBundle\Entity\Comment;
 use Acme\PublicationBundle\Form\PublicationType;
+use Acme\PublicationBundle\Form\CommentType;
 
 /**
  * Publication controller.
@@ -118,9 +120,14 @@ class PublicationController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $comment = new Comment();
+        $commentForm = $this->createCreateCommentForm($comment, $entity);
+
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'comment_form' => $commentForm->createView(),
+
         );
     }
 
@@ -243,5 +250,24 @@ class PublicationController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+     * Creates a form to create a Comment entity.
+     *
+     * @param Comment $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateCommentForm(Comment $entity, Publication $publication)
+    {
+        $form = $this->createForm(new CommentType(), $entity, array(
+            'action' => $this->generateUrl('comment_create', array('publication_id' => $publication->getId())),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
     }
 }
