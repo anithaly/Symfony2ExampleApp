@@ -4,13 +4,15 @@ namespace Acme\PublicationBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Publication
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @Gedmo\Loggable
  */
 class Publication
 {
@@ -26,6 +28,7 @@ class Publication
     /**
      * @var string
      *
+     * @Gedmo\Versioned
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank(message = "Please enter a title")
      * @Assert\Length(
@@ -39,13 +42,14 @@ class Publication
 
     /**
      * @var string
-     *
+     * @Gedmo\Versioned
      * @ORM\Column(name="content", type="text")
      * @Assert\NotBlank(message = "Please enter a content")
      */
     private $content;
 
     /**
+     * @Gedmo\Versioned
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="publications")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      **/

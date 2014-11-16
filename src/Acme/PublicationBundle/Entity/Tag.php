@@ -3,7 +3,7 @@
 namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tag

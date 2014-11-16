@@ -3,13 +3,15 @@
 namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-// use Doctrine\Common\Collections\Collection\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @Gedmo\Loggable
+ *
  */
 class Category
 {
@@ -24,7 +26,7 @@ class Category
 
     /**
      * @var string
-     *
+     * @Gedmo\Versioned
      * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
