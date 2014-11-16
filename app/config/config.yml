@@ -72,6 +72,8 @@ doctrine:
 
 stof_doctrine_extensions:
     default_locale: pl_PL
+    class:
+        loggable: Acme\LogEntryBundle\Listener\LoggerListener
     orm:
         default:
             loggable: true

@@ -12,7 +12,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @Gedmo\Loggable
+ * Gedmo\Loggable
+ * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  */
 class Publication
 {

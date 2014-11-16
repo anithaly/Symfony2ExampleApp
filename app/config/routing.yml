@@ -4,4 +4,7 @@ acme_publication:
     resource: "@AcmePublicationBundle/Controller/"
     type:     annotation
     prefix:   /
-
+acme_log_entry:
+    resource: "@AcmeLogEntryBundle/Controller/"
+    type:     annotation
+    prefix:   /
