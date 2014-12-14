@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Category
  *
- * @ORM\Table()
+ * @ORM\Table(name="categories")
  * @ORM\Entity
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  */

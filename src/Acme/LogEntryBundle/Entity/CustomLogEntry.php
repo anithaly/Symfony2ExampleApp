@@ -10,7 +10,7 @@ use Gedmo\Loggable\Entity\LogEntry;
 /**
  * CustomLogEntry
  *
- * @ORM\Table()
+ * @ORM\Table(name="custom_log_entry")
  * @ORM\Entity
  */
 class CustomLogEntry extends LogEntry

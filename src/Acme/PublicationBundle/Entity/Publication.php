@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Publication
  *
- * @ORM\Table()
+ * @ORM\Table(name="publications")
  * @ORM\Entity
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  */
