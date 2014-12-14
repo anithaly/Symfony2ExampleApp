@@ -27,13 +27,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Symfony 2 example app</a>
+            <a class="navbar-brand" href="{{ path('welcome') }}">Symfony 2 example app</a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="{{ path('publication') }}">Publications</a></li>
-              <li><a href="{{ path('category') }}">Categories</a></li>
-              <li><a href="{{ path('tag') }}">Tags</a></li>
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{ path('publication') }}">Publications</a></li>
+                <li><a href="{{ path('category') }}">Categories</a></li>
+                <li><a href="{{ path('tag') }}">Tags</a></li>
+              {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

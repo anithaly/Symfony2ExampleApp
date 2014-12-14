@@ -8,12 +8,14 @@ class WelcomeController extends Controller
 {
     public function indexAction()
     {
-        /*
-         * The action's view can be rendered using render() method
-         * or @Template annotation as demonstrated in DemoController.
-         *
-         */
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('AcmeDemoBundle:Welcome:index.html.twig');
+        $publications = $em->getRepository('AcmePublicationBundle:Publication')->findAll();
+
+        return $this->render('AcmeDemoBundle:Welcome:index.html.twig',
+            array(
+                'publications' => $publications,
+            )
+        );
     }
 }
