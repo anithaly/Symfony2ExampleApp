@@ -11,7 +11,7 @@ use Acme\UserBundle\Entity\User;
 use Acme\UserBundle\Form\UserType;
 
 /**
- * User controller.
+ * User controller for admin
  *
  * @Route("/user")
  */
@@ -30,6 +30,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AcmeUserBundle:User')->findAll();
+        // $userManager = $this->get('fos_user.user_manager');
 
         return array(
             'entities' => $entities,

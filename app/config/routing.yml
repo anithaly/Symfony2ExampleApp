@@ -8,3 +8,6 @@ acme_log_entry:
     resource: "@AcmeLogEntryBundle/Controller/"
     type:     annotation
     prefix:   /
+#fosuser routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

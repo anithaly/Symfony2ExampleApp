@@ -17,7 +17,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container">
+      <div class="container">
         <div class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -36,15 +36,19 @@
               <li><a href="{{ path('tag') }}">Tags</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="../navbar-static-top/">Log in</a></li>
-              <li><a href="../navbar-fixed-top/">Register</a></li>
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Log out</a></li>
+              {% else %}
+                <li><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+              {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-
         {% block body %}{% endblock %}
-        </div>
-        {% block javascripts %}{% endblock %}
+      </div>
+      {% block javascripts %}{% endblock %}
     </body>
 </html>

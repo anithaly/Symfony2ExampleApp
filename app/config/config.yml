@@ -4,7 +4,8 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
+    default_locale: en
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -69,6 +70,15 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                         alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
                         is_bundle: false
+
+# https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/configuration_reference.md
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Acme\UserBundle\Entity\User
+    from_email:
+        address:        symfony@example.com
+        sender_name:    Symfony example app
 
 stof_doctrine_extensions:
     default_locale: pl_PL
