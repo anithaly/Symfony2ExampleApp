@@ -3,6 +3,7 @@
 namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -29,6 +30,15 @@ class Category
      * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Publication", mappedBy="category")
+     **/
+    private $publications;
+
+    public function __construct() {
+        $this->publications = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +71,17 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getPublications()
+    {
+        return $this->publications;
+    }
+
+    public function setPublications($publications)
+    {
+        $this->publications = $publications;
+
+        return $this;
     }
 }
