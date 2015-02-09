@@ -3,13 +3,5 @@
 {% block body -%}
     <h1>Publication creation</h1>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('publication') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+   {% include 'AcmePublicationBundle:Publication:_form.html.twig' %}
 {% endblock %}

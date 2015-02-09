@@ -1,0 +1,28 @@
+{# _form.html.twig publication form view #}
+
+{% form_theme form 'AcmePublicationBundle:Form:_checkboxes.html.twig' %}
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+<div class="form-group">
+    {{ form_row(form.title, {'attr': { 'class': 'form-control' } } ) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.category, {'attr': { 'class': 'form-control' } } ) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.content, {'attr': { 'class': 'form-control' } } ) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.tags) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.submit, { 'label': 'Save', 'attr': { 'class': 'btn btn-default' } } ) }}
+</div>
+
+{{ form_end(form) }}

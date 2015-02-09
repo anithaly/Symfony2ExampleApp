@@ -47,6 +47,6 @@ class PublicationType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_publicationbundle_publication';
+        return 'publication';
     }
 }
