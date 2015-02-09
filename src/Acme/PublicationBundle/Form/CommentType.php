@@ -36,6 +36,6 @@ class CommentType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_publicationbundle_comment';
+        return 'publication_comment';
     }
 }

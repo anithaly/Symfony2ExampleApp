@@ -18,7 +18,7 @@ class TagType extends AbstractType
             ->add('name')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -34,6 +34,6 @@ class TagType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_publicationbundle_tag';
+        return 'publication_tag';
     }
 }
