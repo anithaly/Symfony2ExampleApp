@@ -17,12 +17,14 @@ To install dependencies, run command in project root dir:
 
 ### Run app
 
+Run the following commands in project root dir:
+
 Generate assets:
 
     ./app/console assets:install
     ./app/console assetic:dump
 
-Run the following command in project root dir:
+Run server:
 
     php app/console server:run
 
@@ -36,6 +38,7 @@ Entities, controllers, forms, bootstrap styles for:
 
   * **PublicationBundle**
   * **UserBundle**
+  * **LogEntryBundle**
 
 Integration with:
 
