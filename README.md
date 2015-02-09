@@ -17,6 +17,11 @@ To install dependencies, run command in project root dir:
 
 ### Run app
 
+Generate assets:
+
+    ./app/console assets:install
+    ./app/console assetic:dump
+
 Run the following command in project root dir:
 
     php app/console server:run
