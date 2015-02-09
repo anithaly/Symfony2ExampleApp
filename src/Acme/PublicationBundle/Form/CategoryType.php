@@ -18,7 +18,7 @@ class CategoryType extends AbstractType
             ->add('name')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -34,6 +34,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_publicationbundle_category';
+        return 'publication_category';
     }
 }
