@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: doctrine_extensions.yml }
 
 framework:
     #esi:             ~
@@ -79,14 +80,6 @@ fos_user:
     from_email:
         address:        symfony@example.com
         sender_name:    Symfony example app
-
-stof_doctrine_extensions:
-    default_locale: pl_PL
-    class:
-        loggable: Acme\LogEntryBundle\Listener\LoggerListener
-    orm:
-        default:
-            loggable: true
 
 # Swiftmailer Configuration
 swiftmailer:

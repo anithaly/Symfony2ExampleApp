@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
 
 /**
  * Publication
@@ -14,7 +15,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  */
-class Publication
+class Publication implements CustomLogInterface
 {
     /**
      * @var integer
@@ -65,6 +66,8 @@ class Publication
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="publication")
      **/
     private $comments;
+
+    private $objectName = "Publication";
 
     public function __construct() {
         $this->comments = new ArrayCollection();
@@ -176,4 +179,13 @@ class Publication
         return $this->comments;
     }
 
+    public function getObjectName()
+    {
+        return $this->objectName;
+    }
+
+    public function setObjectName($name)
+    {
+        $this->objectName = $name;
+    }
 }

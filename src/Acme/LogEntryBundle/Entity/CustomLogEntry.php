@@ -4,8 +4,8 @@ namespace Acme\LogEntryBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
 use Gedmo\Loggable\Entity\LogEntry;
+// use Gedmo\Loggable\Document\MappedSuperclass\AbstractLogEntry;
 
 /**
  * CustomLogEntry
@@ -23,15 +23,44 @@ class CustomLogEntry extends LogEntry
     protected $before_data;
 
     /**
-     * @ORM\Column(type="integer", name="user_id")
+     * Object name
+     * @ORM\Column(name="objectName", type="string", length=20)
      */
-    protected $user_id;
+    protected $objectName;
 
     /**
      * Is checked as read
-     * @ORM\Column(type="boolean", name="is_checked")
+     * @ORM\Column(type="boolean", name="is_checked", nullable=true)
      */
     protected $is_checked = false;
+
+    /**
+     * @var \App\Accounts\Bundle\UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=false)
+     */
+    protected $user;
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    public function getObjectName()
+    {
+        return $this->objectName;
+    }
+
+    public function setObjectName($name)
+    {
+        $this->objectName = $name;
+    }
 
     public function setBeforeData($before_data)
     {

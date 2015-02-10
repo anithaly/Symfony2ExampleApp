@@ -6,14 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class LogController extends Controller
 {
     /**
-     * @Route("/logentry")
+     * @Route("/log", name="log")
      * @Template()
      */
     public function indexAction()
     {
-        return array();
+        $em = $this->getDoctrine()->getManager();
+        $logs = $em->getRepository('AcmeLogEntryBundle:CustomLogEntry')->findAll();
+        return array('logs' => $logs);
     }
 }

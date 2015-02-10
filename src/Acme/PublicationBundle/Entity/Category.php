@@ -5,6 +5,7 @@ namespace Acme\PublicationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
 
 /**
  * Category
@@ -13,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  */
-class Category
+class Category implements CustomLogInterface
 {
     /**
      * @var integer
@@ -35,6 +36,8 @@ class Category
      * @ORM\OneToMany(targetEntity="Publication", mappedBy="category")
      **/
     private $publications;
+
+    private $objectName = "Category";
 
     public function __construct() {
         $this->publications = new ArrayCollection();
@@ -83,5 +86,15 @@ class Category
         $this->publications = $publications;
 
         return $this;
+    }
+
+    public function getObjectName()
+    {
+        return $this->objectName;
+    }
+
+    public function setObjectName($name)
+    {
+        $this->objectName = $name;
     }
 }

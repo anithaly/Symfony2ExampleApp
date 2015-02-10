@@ -1,1 +1,5 @@
 services:
+  log.twig.extension:
+    class: Acme\LogEntryBundle\Twig\LogExtension
+    tags:
+      - { name: twig.extension }
