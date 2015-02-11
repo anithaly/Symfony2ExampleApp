@@ -8,10 +8,10 @@ class LogExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('a2s',
+            new \Twig_SimpleFilter('array2string',
                 array(
                     $this,
-                    'a2s'
+                    'array2string'
                 )
             )
         );
@@ -20,15 +20,20 @@ class LogExtension extends \Twig_Extension
     /*
      * Converts array Changeset to text string
      */
-    public function a2s($array){
+    public function array2string($array){
         if (is_array($array)) {
             $str = '';
             foreach($array as $key=>$value){
                 if (is_array($value)){
-                    $str .= $key . ' :' . $this->a2s($value);
+                    $str .= $key . ' :' . $this->array2string($value);
                 }
-                else
-                $str .= $key . ': ' . $value."<br />";
+                else{
+                    if ($value instanceof \DateTime) {
+                        $str .= $key . ': ' . $value->format('d-m-Y H:i:s')."<br />";
+                    } else {
+                        $str .= $key . ': ' . $value."<br />";
+                    }
+                }
             }
             return $str;
         }

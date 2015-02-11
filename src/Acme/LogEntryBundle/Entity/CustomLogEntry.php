@@ -24,7 +24,7 @@ class CustomLogEntry extends LogEntry
 
     /**
      * Object name
-     * @ORM\Column(name="objectName", type="string", length=20)
+     * @ORM\Column(name="object_name", type="string", length=20)
      */
     protected $objectName;
 
@@ -35,8 +35,6 @@ class CustomLogEntry extends LogEntry
     protected $is_checked = false;
 
     /**
-     * @var \App\Accounts\Bundle\UserBundle\Entity\User
-     *
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=false)
      */
@@ -72,18 +70,6 @@ class CustomLogEntry extends LogEntry
     public function getBeforeData()
     {
         return $this->before_data;
-    }
-
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
-
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 
     public function setIsChecked($is_checked)

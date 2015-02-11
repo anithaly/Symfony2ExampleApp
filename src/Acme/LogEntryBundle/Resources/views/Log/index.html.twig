@@ -24,8 +24,8 @@
                 <td>{{ log.objectName }}</td>
                 <td>{{ log.action }}</td>
                 <td>{{ log.loggedAt.format('d-m-Y H:i:s') }}</td>
-                <td>{{ log.beforeData|a2s|raw }}</td>
-                <td>{{ log.data|a2s|raw }}</td>
+                <td>{{ log.beforeData|array2string|raw }}</td>
+                <td>{{ log.data|array2string|raw }}</td>
             </tr>
         {% endfor %}
         </tbody>
