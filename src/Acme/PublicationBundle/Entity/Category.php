@@ -39,7 +39,7 @@ class Category implements CustomLogInterface
     private $deletedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Publication", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Publication", mappedBy="category", cascade={"persist", "remove"})
      **/
     private $publications;
 
