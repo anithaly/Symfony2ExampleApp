@@ -14,6 +14,7 @@ use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
  * @ORM\Table(name="publications")
  * @ORM\Entity
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Publication implements CustomLogInterface
 {
@@ -50,8 +51,13 @@ class Publication implements CustomLogInterface
     private $content;
 
     /**
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+    /**
      * @Gedmo\Versioned
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="publications")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="publications", fetch="EAGER")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      **/
     private $category;
@@ -187,5 +193,15 @@ class Publication implements CustomLogInterface
     public function setObjectName($name)
     {
         $this->objectName = $name;
+    }
+
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
     }
 }
