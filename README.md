@@ -40,7 +40,7 @@ Run server:
 
     php app/console server:run
 
-Check [http://localhost:8000/app_dev.php][3].
+Check [http://localhost:8000][3].
 
 
 What's inside?
