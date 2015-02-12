@@ -56,6 +56,24 @@ class Publication implements CustomLogInterface
     private $deletedAt;
 
     /**
+     * @var User $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     */
+    private $createdBy;
+
+    /**
+     * @var User $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+     */
+    private $updatedBy;
+
+    /**
      * @Gedmo\Versioned
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="publications", fetch="EAGER")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -204,4 +222,25 @@ class Publication implements CustomLogInterface
     {
         $this->deletedAt = $deletedAt;
     }
+
+    public function getUpdatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function setUpdatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
 }

@@ -16,6 +16,8 @@
                 <th>Title</th>
                 <th>Category</th>
                 <th>Content</th>
+                <th>Created by</th>
+                <th>Updated by</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -30,6 +32,8 @@
                     {% endif %}
                 </td>
                 <td>{{ entity.content }}</td>
+                <td>{% if entity.createdBy %}{{ entity.createdBy.username }}{% endif %}</td>
+                <td>{% if entity.updatedBy %}{{ entity.updatedBy.username }}{% endif %}</td>
                 <td>
                 <ul>
                     <li>
