@@ -77,7 +77,6 @@ class Publication implements CustomLogInterface
     /**
      * @var User $deletedBy
      *
-     * @Gedmo\Blameable(on="change", field="deletedAt")
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */
