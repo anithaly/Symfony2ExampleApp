@@ -2,6 +2,6 @@ services:
     publication.listener.resolver:
         class: Acme\PublicationBundle\Entity\Listener\PublicationListener
         arguments:
-            - @service_container
+            - @security.token_storage
         tags:
             - { name: doctrine.orm.entity_listener, event: preRemove }

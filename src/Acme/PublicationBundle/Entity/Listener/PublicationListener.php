@@ -3,31 +3,25 @@
 namespace Acme\PublicationBundle\Entity\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Acme\PublicationBundle\Entity\Publication;
 
 class PublicationListener
 {
     /**
-     * @var ContainerInterface
+     * @var TokenStorageInterface
      */
-    private $container;
+    private $token_storage;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(TokenStorageInterface $token_storage)
     {
-        $this->container = $container;
+        $this->token_storage = $token_storage;
     }
 
     public function preRemove(Publication $publication, LifecycleEventArgs $event)
     {
-        $securityContext = $this->container->get('security.context');
-
-        if (null === $securityContext) {
-            return;
-        }
-
-        $token = $securityContext->getToken();
-        if (null !== $token && $securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        $token = $this->token_storage->getToken();
+        if (null !== $token) {
             $entityManager = $event->getObjectManager();
             $publication->setDeletedBy($token->getUser());
             $entityManager->persist($publication);

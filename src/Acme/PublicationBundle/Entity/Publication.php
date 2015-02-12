@@ -75,7 +75,7 @@ class Publication implements CustomLogInterface
     private $updatedBy;
 
     /**
-     * @var User $contentChangedBy
+     * @var User $deletedBy
      *
      * @Gedmo\Blameable(on="change", field="deletedAt")
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
