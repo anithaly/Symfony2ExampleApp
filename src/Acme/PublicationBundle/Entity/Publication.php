@@ -13,6 +13,7 @@ use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
  *
  * @ORM\Table(name="publications")
  * @ORM\Entity
+ * @ORM\EntityListeners({"Acme\PublicationBundle\Entity\Listener\PublicationListener" })
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
@@ -72,6 +73,15 @@ class Publication implements CustomLogInterface
      * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
      */
     private $updatedBy;
+
+    /**
+     * @var User $contentChangedBy
+     *
+     * @Gedmo\Blameable(on="change", field="deletedAt")
+     * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
+     */
+    private $deletedBy;
 
     /**
      * @Gedmo\Versioned
@@ -243,4 +253,13 @@ class Publication implements CustomLogInterface
         $this->createdBy = $createdBy;
     }
 
+    public function getDeletedBy()
+    {
+        return $this->deletedBy;
+    }
+
+    public function setDeletedBy($deletedBy)
+    {
+        $this->deletedBy = $deletedBy;
+    }
 }
