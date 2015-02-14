@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
+    - { resource: fos_user.yml }
+    - { resource: fos_rest.yml }
 
 framework:
     #esi:             ~
@@ -76,15 +78,6 @@ doctrine:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
 
-# https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/configuration_reference.md
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: Acme\UserBundle\Entity\User
-    from_email:
-        address:        symfony@example.com
-        sender_name:    Symfony example app
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -98,3 +91,6 @@ services:
          class: Twig_Extensions_Extension_Text
          tags:
              - { name: twig.extension }
+
+nelmio_api_doc:
+    name: Symfony example app API

@@ -1,0 +1,5 @@
+categories:
+    resource: "@AcmePublicationBundle/Controller/CategoryController.php"
+    type:     rest
+    # prefix:   /categories
+    name_prefix:  category_

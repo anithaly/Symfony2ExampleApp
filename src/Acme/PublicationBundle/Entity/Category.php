@@ -5,6 +5,7 @@ namespace Acme\PublicationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
 use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
 
 /**
@@ -39,6 +40,7 @@ class Category implements CustomLogInterface
     private $deletedAt;
 
     /**
+     * @JMS\Exclude
      * @ORM\OneToMany(targetEntity="Publication", mappedBy="category", cascade={"persist", "remove"})
      **/
     private $publications;

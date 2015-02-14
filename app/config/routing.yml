@@ -8,6 +8,17 @@ acme_log_entry:
     resource: "@AcmeLogEntryBundle/Controller/"
     type:     annotation
     prefix:   /
+
+#REST
+rest :
+  type : rest
+  resource : "routing_rest.yml"
+  prefix : /api
+
 #fosuser routing
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#Nelmio routing
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
