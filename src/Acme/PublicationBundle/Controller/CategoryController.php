@@ -3,10 +3,6 @@
 namespace Acme\PublicationBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Util\Codes;
@@ -21,12 +17,9 @@ use Acme\PublicationBundle\Form\CategoryType;
 
 /**
  * Category controller.
- *
- * Route("/category")
  */
 class CategoryController extends FOSRestController
 {
-
 
     /**
      * Lists all Category entities.
@@ -43,15 +36,9 @@ class CategoryController extends FOSRestController
      * )
      *
      * @Annotations\View(
-     *  templateVar="categor"
+     *  templateVar="categories"
      * )
      *
-     * Route("/", name="category")
-     * Method("GET")
-     * Template()
-     *
-     * @param Request               $request      the request object
-     * @param ParamFetcherInterface $paramFetcher param fetcher service
      * @return JsonResponse
      */
     public function getCategoriesAction(Request $request, ParamFetcherInterface $paramFetcher)
@@ -66,15 +53,22 @@ class CategoryController extends FOSRestController
     /**
      * Creates a new Category entity.
      *
+     * @ApiDoc(
+     *      section="Categories",
+     *      resource = true,
+     *      description="Create category",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
      * @Annotations\View(
      *  template = "AcmePublicationBundle:Category:newCategory.html.twig",
      *  statusCode = Codes::HTTP_BAD_REQUEST,
      *  templateVar = "form"
      * )
-     *
-     * Route("/", name="category_create")
-     * Method("POST")
-     * Template("AcmePublicationBundle:Category:new.html.twig")
      */
     public function postCategoryAction(Request $request)
     {
@@ -87,7 +81,7 @@ class CategoryController extends FOSRestController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_get_category', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('categories_get_category', array('id' => $entity->getId())));
         }
 
         return array(
@@ -106,7 +100,7 @@ class CategoryController extends FOSRestController
     private function createCreateForm(Category $entity)
     {
         $form = $this->createForm(new CategoryType(), $entity, array(
-            'action' => $this->generateUrl('category_post_category'),
+            'action' => $this->generateUrl('categories_post_category'),
             'method' => 'POST',
         ));
 
@@ -122,9 +116,6 @@ class CategoryController extends FOSRestController
      *  templateVar = "form"
      * )
      *
-     * Route("/new", name="category_new")
-     * Method("GET")
-     * Template()
      */
     public function newCategoryAction()
     {
@@ -144,7 +135,7 @@ class CategoryController extends FOSRestController
      *      section="Categories",
      *      resource = true,
      *      description="Show category",
-     *      output = "Acme\PblicationBundle\Entity\Category",
+     *      output = "Acme\PublicationBundle\Entity\Category",
      *      statusCodes={
      *          200="OK",
      *          400="An error occurred, check error message",
@@ -154,12 +145,6 @@ class CategoryController extends FOSRestController
      *
      * @Annotations\View(templateVar="category")
      *
-     * Route("/{id}", name="category_show")
-     * Method("GET")
-     * Template()
-     *
-     * @param Request               $request      the request object
-     * @param ParamFetcherInterface $paramFetcher param fetcher service
      * @throws NotFoundHttpException when page not exist
      */
     public function getCategoryAction($id)
@@ -184,12 +169,10 @@ class CategoryController extends FOSRestController
      * Displays a form to edit an existing Category entity.
      *
      * @Annotations\View(
+     *  template = "AcmePublicationBundle:Category:editCategory.html.twig",
      *  templateVar = "form"
      * )
      *
-     * Route("/{id}/edit", name="category_edit")
-     * Method("GET")
-     * Template()
      */
     public function editCategoryAction($id)
     {
@@ -221,7 +204,7 @@ class CategoryController extends FOSRestController
     private function createEditForm(Category $entity)
     {
         $form = $this->createForm(new CategoryType(), $entity, array(
-            'action' => $this->generateUrl('category_put_category', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('categories_put_category', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -229,17 +212,27 @@ class CategoryController extends FOSRestController
 
         return $form;
     }
+
     /**
      * Edits an existing Category entity.
+     *
+     * @ApiDoc(
+     *   section="Categories",
+     *   resource = true,
+     *   description="Update category",
+     *   input = "Acme\PublicationBundle\Form\CategoryType",
+     *   statusCodes = {
+     *     201 = "Returned when the Category is created",
+     *     204 = "Returned when successful",
+     *     400 = "Returned when the form has errors"
+     *   }
+     * )
      *
      * @Annotations\View(
      *  template = "AcmePublicationBundle:Category:editCategory.html.twig",
      *  templateVar = "form"
      * )
      *
-     * Route("/{id}", name="category_update")
-     * Method("PUT")
-     * Template("AcmePublicationBundle:Category:edit.html.twig")
      */
     public function putCategoryAction(Request $request, $id)
     {
@@ -258,7 +251,7 @@ class CategoryController extends FOSRestController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_get_category', array('id' => $id)));
+            return $this->redirect($this->generateUrl('categories_get_category', array('id' => $id)));
         }
 
         return array(
@@ -267,11 +260,23 @@ class CategoryController extends FOSRestController
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Category entity.
      *
-     * Route("/{id}", name="category_delete")
-     * Method("DELETE")
+     * @ApiDoc(
+     *      section="Categories",
+     *      resource = true,
+     *      description="Delete category",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
+     * @param  Request $request
+     * @param  integer $id
      */
     public function deleteCategoryAction(Request $request, $id)
     {
@@ -290,7 +295,7 @@ class CategoryController extends FOSRestController
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('category_get_categories'));
+        return $this->redirect($this->generateUrl('categories_get_categories'));
     }
 
     /**
@@ -303,7 +308,7 @@ class CategoryController extends FOSRestController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('category_delete_category', array('id' => $id)))
+            ->setAction($this->generateUrl('categories_delete_category', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

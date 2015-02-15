@@ -35,6 +35,7 @@ class Category implements CustomLogInterface
     private $name;
 
     /**
+     * @JMS\Exclude
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     private $deletedAt;

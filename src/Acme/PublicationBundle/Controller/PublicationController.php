@@ -3,10 +3,15 @@
 namespace Acme\PublicationBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Util\Codes;
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 use Acme\PublicationBundle\Entity\Publication;
 use Acme\PublicationBundle\Entity\Comment;
 use Acme\PublicationBundle\Form\PublicationType;
@@ -14,20 +19,31 @@ use Acme\PublicationBundle\Form\CommentType;
 
 /**
  * Publication controller.
- *
- * @Route("/publication")
  */
-class PublicationController extends Controller
+class PublicationController extends FOSRestController
 {
 
     /**
      * Lists all Publication entities.
      *
-     * @Route("/", name="publication")
-     * @Method("GET")
-     * @Template()
+     * @ApiDoc(
+     *      section="Publications",
+     *      resource = true,
+     *      description="List publications",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
+     * @Annotations\View(
+     *  templateVar="publications"
+     * )
+     *
+     * @return JsonResponse
      */
-    public function indexAction()
+    public function getPublicationsAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,14 +53,29 @@ class PublicationController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Publication entity.
      *
-     * @Route("/", name="publication_create")
-     * @Method("POST")
-     * @Template("AcmePublicationBundle:Publication:new.html.twig")
+     * @ApiDoc(
+     *      section="Publications",
+     *      resource = true,
+     *      description="Create publication",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
+     * @Annotations\View(
+     *  template = "AcmePublicationBundle:Publication:newPublication.html.twig",
+     *  statusCode = Codes::HTTP_BAD_REQUEST,
+     *  templateVar = "form"
+     * )
+     *
      */
-    public function createAction(Request $request)
+    public function postPublicationAction(Request $request)
     {
         $entity = new Publication();
         $form = $this->createCreateForm($entity);
@@ -55,7 +86,7 @@ class PublicationController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('publication_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('publications_get_publication', array('id' => $entity->getId())));
         }
 
         return array(
@@ -74,7 +105,7 @@ class PublicationController extends Controller
     private function createCreateForm(Publication $entity)
     {
         $form = $this->createForm(new PublicationType(), $entity, array(
-            'action' => $this->generateUrl('publication_create'),
+            'action' => $this->generateUrl('publications_post_publication'),
             'method' => 'POST',
         ));
 
@@ -86,11 +117,12 @@ class PublicationController extends Controller
     /**
      * Displays a form to create a new Publication entity.
      *
-     * @Route("/new", name="publication_new")
-     * @Method("GET")
-     * @Template()
+     * @Annotations\View(
+     *  templateVar = "form"
+     * )
+     *
      */
-    public function newAction()
+    public function newPublicationAction()
     {
         $entity = new Publication();
         $form   = $this->createCreateForm($entity);
@@ -104,11 +136,22 @@ class PublicationController extends Controller
     /**
      * Finds and displays a Publication entity.
      *
-     * @Route("/{id}", name="publication_show")
-     * @Method("GET")
-     * @Template()
+     * @ApiDoc(
+     *      section="Publications",
+     *      resource = true,
+     *      description="Show publication",
+     *      output = "Acme\PublicationBundle\Entity\Publication",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
+     * @Annotations\View(templateVar="publication")
+     *
      */
-    public function showAction($id)
+    public function getPublicationAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -134,11 +177,13 @@ class PublicationController extends Controller
     /**
      * Displays a form to edit an existing Publication entity.
      *
-     * @Route("/{id}/edit", name="publication_edit")
-     * @Method("GET")
-     * @Template()
+     * @Annotations\View(
+     *  template = "AcmePublicationBundle:Publication:editPublication.html.twig",
+     *  templateVar = "form"
+     * )
+     *
      */
-    public function editAction($id)
+    public function editPublicationAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -168,7 +213,7 @@ class PublicationController extends Controller
     private function createEditForm(Publication $entity)
     {
         $form = $this->createForm(new PublicationType(), $entity, array(
-            'action' => $this->generateUrl('publication_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('publications_put_publication', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -176,14 +221,29 @@ class PublicationController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Publication entity.
      *
-     * @Route("/{id}", name="publication_update")
-     * @Method("PUT")
-     * @Template("AcmePublicationBundle:Publication:edit.html.twig")
+     * @ApiDoc(
+     *   section="Publications",
+     *   resource = true,
+     *   description="Upadate publication",
+     *   input = "Acme\PublicationBundle\Form\PublicationType",
+     *   statusCodes = {
+     *     201 = "Returned when the Category is created",
+     *     204 = "Returned when successful",
+     *     400 = "Returned when the form has errors"
+     *   }
+     * )
+     *
+     * @Annotations\View(
+     *  template = "AcmePublicationBundle:Publication:editPublication.html.twig",
+     *  templateVar = "form"
+     * )
+     *
      */
-    public function updateAction(Request $request, $id)
+    public function putPublicationAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -200,7 +260,7 @@ class PublicationController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('publication_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('publications_get_publication', array('id' => $id)));
         }
 
         return array(
@@ -209,13 +269,25 @@ class PublicationController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Publication entity.
      *
-     * @Route("/{id}", name="publication_delete")
-     * @Method("DELETE")
+     * @ApiDoc(
+     *      section="Publications",
+     *      resource = true,
+     *      description="Delete publication",
+     *      statusCodes={
+     *          200="OK",
+     *          400="An error occurred, check error message",
+     *          403="User is not authorized"
+     *      }
+     * )
+     *
+     * @param  Request $request
+     * @param  integer $id
      */
-    public function deleteAction(Request $request, $id)
+    public function deletePublicationAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
@@ -232,7 +304,7 @@ class PublicationController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('publication'));
+        return $this->redirect($this->generateUrl('publications_get_publications'));
     }
 
     /**
@@ -245,7 +317,7 @@ class PublicationController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('publication_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('publications_delete_publication', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

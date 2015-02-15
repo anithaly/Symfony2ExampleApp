@@ -4,6 +4,7 @@ namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Tag
@@ -30,6 +31,7 @@ class Tag
     private $name;
 
     /**
+     * @JMS\Exclude
      * @ORM\ManyToMany(targetEntity="Publication", mappedBy="tags")
      **/
     private $publications;

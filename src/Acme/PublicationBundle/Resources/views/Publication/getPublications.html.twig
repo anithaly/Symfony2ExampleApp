@@ -4,7 +4,7 @@
     <div class="page-header">
         <h1>Publication list</h1>
             <p>
-                <a href="{{ path('publication_new') }}" class="btn btn-primary">
+                <a href="{{ path('publications_new_publication') }}" class="btn btn-primary">
                     Create a new entry
                 </a>
             </p>
@@ -24,7 +24,7 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('publication_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
                 <td>
                     {% if entity.category %}
@@ -37,10 +37,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('publication_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('publication_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>

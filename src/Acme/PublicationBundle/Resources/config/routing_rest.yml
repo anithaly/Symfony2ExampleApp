@@ -2,4 +2,9 @@ categories:
     resource: "@AcmePublicationBundle/Controller/CategoryController.php"
     type:     rest
     # prefix:   /categories
-    name_prefix:  category_
+    name_prefix:  categories_
+publications:
+    resource: "@AcmePublicationBundle/Controller/PublicationController.php"
+    type:     rest
+    # prefix:   /publications
+    name_prefix:  publications_

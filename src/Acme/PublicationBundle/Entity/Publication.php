@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation as JMS;
 use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
 
 /**
@@ -52,13 +53,14 @@ class Publication implements CustomLogInterface
     private $content;
 
     /**
+     * @JMS\Exclude
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     private $deletedAt;
 
     /**
      * @var User $createdBy
-     *
+     * @JMS\Exclude
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
@@ -67,7 +69,7 @@ class Publication implements CustomLogInterface
 
     /**
      * @var User $updatedBy
-     *
+     * @JMS\Exclude
      * @Gedmo\Blameable(on="update")
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
@@ -76,7 +78,7 @@ class Publication implements CustomLogInterface
 
     /**
      * @var User $deletedBy
-     *
+     * @JMS\Exclude
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      */

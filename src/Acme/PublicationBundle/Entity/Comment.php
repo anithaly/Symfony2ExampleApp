@@ -3,6 +3,7 @@
 namespace Acme\PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Comment
@@ -43,6 +44,7 @@ class Comment
     private $content;
 
     /**
+     * @JMS\Exclude
      * @ORM\ManyToOne(targetEntity="Publication", inversedBy="comments")
      * @ORM\JoinColumn(name="publication_id", referencedColumnName="id")
      **/

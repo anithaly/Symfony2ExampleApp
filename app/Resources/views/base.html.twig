@@ -32,8 +32,8 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <li><a href="{{ path('publication') }}">Publications</a></li>
-                <li><a href="{{ path('category_get_categories') }}">Categories</a></li>
+                <li><a href="{{ path('publications_get_publications') }}">Publications</a></li>
+                <li><a href="{{ path('categories_get_categories') }}">Categories</a></li>
                 <li><a href="{{ path('tag') }}">Tags</a></li>
               {% endif %}
             </ul>
