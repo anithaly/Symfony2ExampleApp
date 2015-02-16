@@ -319,7 +319,13 @@ class PublicationController extends FOSRestController
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('publications_delete_publication', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', [
+                'label' => 'Delete',
+                'attr' => [
+                    'class' => 'btn btn-default'
+                    ]
+                ]
+            )
             ->getForm()
         ;
     }

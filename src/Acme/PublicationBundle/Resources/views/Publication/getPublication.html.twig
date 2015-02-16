@@ -3,7 +3,7 @@
 {% block body -%}
     <h1>Publication</h1>
 
-    <table class="record_properties">
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -32,19 +32,10 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('publications_get_publications') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <a class="btn btn-default" href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">
+        Edit
+    </a>
+    {{ form(delete_form) }}
 
 {% include "AcmePublicationBundle:Comment:_new.html.twig" with {'form':comment_form, 'publication':entity} %}
 

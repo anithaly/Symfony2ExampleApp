@@ -240,7 +240,13 @@ class TagController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('tag_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', [
+                'label' => 'Delete',
+                'attr' => [
+                    'class' => 'btn btn-default'
+                    ]
+                ]
+            )
             ->getForm()
         ;
     }

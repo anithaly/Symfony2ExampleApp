@@ -8,7 +8,7 @@
                     {% for entity in publications %}
                     <article class="article">
                         <h4>
-                            <a href="{{ path('publication_show', { 'id': entity.id }) }}">{{ entity.title }}</a>
+                            <a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">{{ entity.title }}</a>
                         </h4>
                         <div class="date"></div>
                         <div class="date">

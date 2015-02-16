@@ -310,7 +310,13 @@ class CategoryController extends FOSRestController
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('categories_delete_category', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', [
+                'label' => 'Delete',
+                'attr' => [
+                    'class' => 'btn btn-default'
+                    ]
+                ]
+            )
             ->getForm()
         ;
     }
