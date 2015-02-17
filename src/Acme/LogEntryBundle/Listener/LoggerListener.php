@@ -74,6 +74,7 @@ class LoggerListener extends LoggableListener
             if (!($action === self::ACTION_CREATE)) {
                 $logEntry->setBeforeData($oldValues);
             }
+
             $user = $om->getRepository('AcmeUserBundle:User')->findOneByUsername($this->username);
             $logEntry->setUser($user);
             $logEntry->setObjectName($object->getObjectName());

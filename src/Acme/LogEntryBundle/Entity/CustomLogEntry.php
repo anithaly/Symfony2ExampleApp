@@ -4,8 +4,8 @@ namespace Acme\LogEntryBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Loggable\Entity\LogEntry;
-// use Gedmo\Loggable\Document\MappedSuperclass\AbstractLogEntry;
+// use Gedmo\Loggable\Entity\LogEntry;
+use Gedmo\Loggable\Entity\MappedSuperclass\AbstractLogEntry;
 
 /**
  * CustomLogEntry
@@ -13,7 +13,7 @@ use Gedmo\Loggable\Entity\LogEntry;
  * @ORM\Table(name="custom_log_entry")
  * @ORM\Entity
  */
-class CustomLogEntry extends LogEntry
+class CustomLogEntry extends AbstractLogEntry
 {
 
     /**

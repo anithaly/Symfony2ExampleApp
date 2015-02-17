@@ -15,7 +15,7 @@ class LogController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $logs = $em->getRepository('AcmeLogEntryBundle:CustomLogEntry')->findAll();
+        $logs = $em->getRepository('AcmeLogEntryBundle:CustomLogEntry')->findBy([], ['id' => 'desc']);
         return array('logs' => $logs);
     }
 }
