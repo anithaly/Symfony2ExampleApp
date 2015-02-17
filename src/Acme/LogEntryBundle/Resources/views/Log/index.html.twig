@@ -16,6 +16,7 @@
                 <th>Data after</th>
                 <th>Object id</th>
                 <th>Version</th>
+                <th>Revert</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +31,13 @@
                 <td>{{ log.data|array2string|raw }}</td>
                 <td>{{ log.objectId }}</td>
                 <td>{{ log.version }}</td>
-
+                <td>
+                    {% if log.action == 'remove' %}
+                       <a href="{{ path('log_restore', { 'id': log.id }) }}">restore</a>
+                    {% else %}
+                        <a href="{{ path('log_revert', { 'id': log.id }) }}">revert to version</a>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -13,7 +13,7 @@ use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
  * Publication
  *
  * @ORM\Table(name="publications")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Acme\PublicationBundle\Entity\Repository\PublicationRepository")
  * @ORM\EntityListeners({"Acme\PublicationBundle\Entity\Listener\PublicationListener" })
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)

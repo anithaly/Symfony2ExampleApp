@@ -1,0 +1,41 @@
+{# _published.html.twig publication list #}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Content</th>
+            <th>Created by</th>
+            <th>Updated by</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.title }}</td>
+            <td>
+                {% if entity.category %}
+                    {{ entity.category.name }}
+                {% endif %}
+            </td>
+            <td>{{ entity.content }}</td>
+            <td>{% if entity.createdBy %}{{ entity.createdBy.username }}{% endif %}</td>
+            <td>{% if entity.updatedBy %}{{ entity.updatedBy.username }}{% endif %}</td>
+            <td>
+            <ul>
+                <li>
+                    <a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">show</a>
+                </li>
+                <li>
+                    <a href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">edit</a>
+                </li>
+            </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

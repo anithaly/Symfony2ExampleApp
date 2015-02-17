@@ -49,8 +49,12 @@ class PublicationController extends FOSRestController
 
         $entities = $em->getRepository('AcmePublicationBundle:Publication')->findAll();
 
+        $em->getFilters()->disable('softdeleteable');
+        $deleted = $em->getRepository('AcmePublicationBundle:Publication')->findAllDeleted();
+
         return array(
             'entities' => $entities,
+            'deleted' => $deleted,
         );
     }
 

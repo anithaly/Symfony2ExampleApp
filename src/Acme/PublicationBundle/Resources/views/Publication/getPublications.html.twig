@@ -1,52 +1,26 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <div class="page-header">
-        <h1>Publication list</h1>
-            <p>
-                <a href="{{ path('publications_new_publication') }}" class="btn btn-primary">
-                    Create a new entry
-                </a>
-            </p>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Content</th>
-                <th>Created by</th>
-                <th>Updated by</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.title }}</td>
-                <td>
-                    {% if entity.category %}
-                        {{ entity.category.name }}
-                    {% endif %}
-                </td>
-                <td>{{ entity.content }}</td>
-                <td>{% if entity.createdBy %}{{ entity.createdBy.username }}{% endif %}</td>
-                <td>{% if entity.updatedBy %}{{ entity.updatedBy.username }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('publications_get_publication', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h1>Publications</h1>
+    <p>
+        <a href="{{ path('publications_new_publication') }}" class="btn btn-primary">
+            Create a new entry
+        </a>
+    </p>
+
+    {% if entities %}
+        <div class="page-header">
+            <h1>Published</h1>
+        </div>
+
+        {% include 'AcmePublicationBundle:Publication:_published.html.twig' with {'entities' : entities} %}
+    {% endif %}
+
+    {% if deleted %}
+        <div class="page-header">
+            <h1>Deleted</h1>
+        </div>
+        {% include 'AcmePublicationBundle:Publication:_deleted.html.twig' with {'entities' : deleted} %}
+    {% endif %}
 
 {% endblock %}

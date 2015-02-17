@@ -11,7 +11,7 @@ use Gedmo\Loggable\Entity\MappedSuperclass\AbstractLogEntry;
  * CustomLogEntry
  *
  * @ORM\Table(name="custom_log_entry")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gedmo\Loggable\Entity\Repository\LogEntryRepository")
  */
 class CustomLogEntry extends AbstractLogEntry
 {
