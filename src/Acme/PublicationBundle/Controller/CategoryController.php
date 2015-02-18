@@ -47,7 +47,7 @@ class CategoryController extends FOSRestController
         $entities = $em->getRepository('AcmePublicationBundle:Category')->findAll();
 
         return array(
-            'entities' => $entities,
+            'categories' => $entities,
         );
     }
     /**
@@ -85,7 +85,7 @@ class CategoryController extends FOSRestController
         }
 
         return array(
-            'entity' => $entity,
+            'category' => $entity,
             'form'   => $form->createView(),
         );
     }
@@ -123,7 +123,7 @@ class CategoryController extends FOSRestController
         $form   = $this->createCreateForm($entity);
 
         return array(
-            'entity' => $entity,
+            'category' => $entity,
             'form'   => $form->createView(),
         );
     }
@@ -160,7 +160,7 @@ class CategoryController extends FOSRestController
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'category'      => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -188,7 +188,7 @@ class CategoryController extends FOSRestController
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'category'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -255,7 +255,7 @@ class CategoryController extends FOSRestController
         }
 
         return array(
-            'entity'      => $entity,
+            'category'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
