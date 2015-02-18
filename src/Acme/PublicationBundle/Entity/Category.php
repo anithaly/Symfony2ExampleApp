@@ -12,7 +12,7 @@ use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
  * Category
  *
  * @ORM\Table(name="categories")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Acme\PublicationBundle\Entity\Repository\CategoryRepository")
  * @Gedmo\Loggable(logEntryClass="Acme\LogEntryBundle\Entity\CustomLogEntry")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */

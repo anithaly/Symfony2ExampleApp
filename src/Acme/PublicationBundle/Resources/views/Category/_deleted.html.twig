@@ -1,0 +1,20 @@
+{# _deleted.html.twig publication list #}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Deleted at</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('categories_get_category', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.deletedAt.format('d-m-Y H:i:s') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -46,8 +46,12 @@ class CategoryController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AcmePublicationBundle:Category')->findAll();
 
+        $em->getFilters()->disable('softdeleteable');
+        $deleted = $em->getRepository('AcmePublicationBundle:Category')->findAllDeleted();
+
         return array(
             'categories' => $entities,
+            'deleted' => $deleted,
         );
     }
     /**
