@@ -53,7 +53,7 @@ class PublicationController extends FOSRestController
         $deleted = $em->getRepository('AcmePublicationBundle:Publication')->findAllDeleted();
 
         return array(
-            'entities' => $entities,
+            'publications' => $entities,
             'deleted' => $deleted,
         );
     }
@@ -94,7 +94,7 @@ class PublicationController extends FOSRestController
         }
 
         return array(
-            'entity' => $entity,
+            'publication' => $entity,
             'form'   => $form->createView(),
         );
     }
@@ -132,7 +132,7 @@ class PublicationController extends FOSRestController
         $form   = $this->createCreateForm($entity);
 
         return array(
-            'entity' => $entity,
+            'publication' => $entity,
             'form'   => $form->createView(),
         );
     }
@@ -171,7 +171,7 @@ class PublicationController extends FOSRestController
         $commentForm = $this->createCreateCommentForm($comment, $entity);
 
         return array(
-            'entity'      => $entity,
+            'publication'      => $entity,
             'delete_form' => $deleteForm->createView(),
             'comment_form' => $commentForm->createView(),
 
@@ -201,7 +201,7 @@ class PublicationController extends FOSRestController
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'publication'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -268,7 +268,7 @@ class PublicationController extends FOSRestController
         }
 
         return array(
-            'entity'      => $entity,
+            'publication'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );

@@ -8,12 +8,12 @@
         </a>
     </p>
 
-    {% if entities %}
+    {% if publications %}
         <div class="page-header">
             <h1>Published</h1>
         </div>
 
-        {% include 'AcmePublicationBundle:Publication:_published.html.twig' with {'entities' : entities} %}
+        {% include 'AcmePublicationBundle:Publication:_published.html.twig' with {'entities' : publications} %}
     {% endif %}
 
     {% if deleted %}

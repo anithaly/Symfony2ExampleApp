@@ -7,24 +7,24 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ entity.id }}</td>
+                <td>{{ publication.id }}</td>
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ entity.title }}</td>
+                <td>{{ publication.title }}</td>
             </tr>
             <tr>
                 <th>Category</th>
-                <td>{{ entity.category.name }}</td>
+                <td>{{ publication.category.name }}</td>
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ entity.content }}</td>
+                <td>{{ publication.content }}</td>
             </tr>
             <tr>
                 <th>Tags</th>
                 <td>
-                    {% for tag in entity.tags %}
+                    {% for tag in publication.tags %}
                         <p>{{ tag.name }}</p>
                     {% endfor %}
                 </td>
@@ -32,13 +32,13 @@
         </tbody>
     </table>
 
-    <a class="btn btn-default" href="{{ path('publications_edit_publication', { 'id': entity.id }) }}">
+    <a class="btn btn-default" href="{{ path('publications_edit_publication', { 'id': publication.id }) }}">
         Edit
     </a>
     {{ form(delete_form) }}
 
-{% include "AcmePublicationBundle:Comment:_new.html.twig" with {'form':comment_form, 'publication':entity} %}
+{% include "AcmePublicationBundle:Comment:_new.html.twig" with {'form':comment_form, 'publication':publication} %}
 
-{% include "AcmePublicationBundle:Comment:_index.html.twig" with {'entities':entity.comments} %}
+{% include "AcmePublicationBundle:Comment:_index.html.twig" with {'entities':publication.comments} %}
 
 {% endblock %}
