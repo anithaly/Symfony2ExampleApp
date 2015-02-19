@@ -4,6 +4,7 @@ imports:
     - { resource: doctrine_extensions.yml }
     - { resource: fos_user.yml }
     - { resource: fos_rest.yml }
+    - { resource: jms_serializer.yml }
 
 framework:
     #esi:             ~

@@ -4,10 +4,11 @@ namespace Acme\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * User
- *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
@@ -18,13 +19,14 @@ class User extends BaseUser
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @JMS\Expose
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
-     *
+     * @JMS\Expose
      * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
@@ -40,7 +42,6 @@ class User extends BaseUser
     {
         parent::__construct();
     }
-
 
     /**
      * Get id
@@ -97,4 +98,5 @@ class User extends BaseUser
     {
         return $this->bio;
     }
+
 }

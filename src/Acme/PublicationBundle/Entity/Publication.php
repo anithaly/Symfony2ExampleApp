@@ -11,7 +11,7 @@ use Acme\LogEntryBundle\Entity\Interfaces\CustomLogInterface;
 
 /**
  * Publication
- *
+ * @JMS\ExclusionPolicy("none")
  * @ORM\Table(name="publications")
  * @ORM\Entity(repositoryClass="Acme\PublicationBundle\Entity\Repository\PublicationRepository")
  * @ORM\EntityListeners({"Acme\PublicationBundle\Entity\Listener\PublicationListener" })
@@ -60,7 +60,6 @@ class Publication implements CustomLogInterface
 
     /**
      * @var User $createdBy
-     * @JMS\Exclude
      * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Acme\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
@@ -104,7 +103,8 @@ class Publication implements CustomLogInterface
 
     private $objectName = "Publication";
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
