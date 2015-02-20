@@ -54,8 +54,12 @@ Bundles:
 
 Integration with:
 
+  * FOSUserBundle
+  * FOSRestBundle
+  * JMSSerializerBundle
+  * NelmioApiDocBundle
+  * StofDoctrineExtensionsBundle (Loggable, Blameable, SoftDeleteable)
   * DoctrineMigrationsBundle
-  * StofDoctrineExtension (loggable)
 
 
 License
