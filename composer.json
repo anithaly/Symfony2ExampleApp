@@ -26,7 +26,8 @@
         "nelmio/api-doc-bundle": "@dev",
         "jms/serializer-bundle": "@dev",
         "friendsofsymfony/rest-bundle": "@dev",
-        "jms/di-extra-bundle": "@dev"
+        "jms/di-extra-bundle": "@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
