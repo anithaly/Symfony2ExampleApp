@@ -4,8 +4,18 @@ namespace Acme\PublicationBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TagControllerTest extends WebTestCase
+class TagControllerTest extends BaseControllerTest
 {
+
+    public function testIndex()
+    {
+        $crawler = $this->client->request('GET', '/tag/');
+
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $heading = $crawler->filter('h1')->eq(0)->text();
+        $this->assertEquals('Tags list', $heading);
+    }
+
     /*
     public function testCompleteScenario()
     {

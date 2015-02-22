@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PublicationControllerTest extends WebTestCase
 {
+    public function testIndex()
+    {
+    }
+
     /*
     public function testCompleteScenario()
     {

@@ -6,3 +6,4 @@ fos_user:
     from_email:
         address:        symfony@example.com
         sender_name:    Symfony example app
+

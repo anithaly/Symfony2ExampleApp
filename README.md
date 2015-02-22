@@ -1,7 +1,26 @@
 Symfony Example App
 ========================
 
-Example application created for symfony workshops.
+Example Symfony application
+
+What's inside?
+-------------------------------
+
+Bundles:
+
+  * PublicationBundle
+  * UserBundle
+  * LogEntryBundle
+
+Integration with:
+
+  * FOSUserBundle
+  * FOSRestBundle
+  * JMSSerializerBundle
+  * NelmioApiDocBundle
+  * StofDoctrineExtensionsBundle (Loggable, Blameable, SoftDeleteable)
+  * DoctrineMigrationsBundle
+  * DoctrineFixturesBundle
 
 Installation and running
 ----------------------------------
@@ -11,7 +30,7 @@ Installation and running
 Make sure you have installed the requirements for running symfony [requirements][1].
 
 Install [composer][2] to manage dependencies.
-To install dependencies, run command in project root dir:
+To install dependencies run command in project root dir:
 
     composer install
 
@@ -31,6 +50,10 @@ Create/update tables:
 
     ./app/console doctrine:migrations:migrate
 
+Load fixtures:
+
+    ./app/console doctrine:fixtures:load
+
 Generate assets:
 
     ./app/console assets:install
@@ -42,24 +65,13 @@ Run server:
 
 Check [http://localhost:8000][3].
 
+### Run tests
 
-What's inside?
--------------------------------
+Install [PHPUnit][4] to run tests.
 
-Bundles:
+Run the following commands in project root dir:
 
-  * **PublicationBundle**
-  * **UserBundle**
-  * **LogEntryBundle**
-
-Integration with:
-
-  * FOSUserBundle
-  * FOSRestBundle
-  * JMSSerializerBundle
-  * NelmioApiDocBundle
-  * StofDoctrineExtensionsBundle (Loggable, Blameable, SoftDeleteable)
-  * DoctrineMigrationsBundle
+    phpunit -c app/ src/
 
 
 License
@@ -70,7 +82,7 @@ released under the MIT license.
 
 The MIT License
 
-Copyright © 2014, Natalia Stanko [nataliastanko.com][4]
+Copyright © 2014, Natalia Stanko [nataliastanko.com][5]
 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -95,4 +107,5 @@ THE SOFTWARE.
 [1]:  http://symfony.com/doc/current/reference/requirements.html
 [2]:  http://getcomposer.org/
 [3]:  http://localhost:8000/app_dev.php
-[4]:  http://nataliastanko.com/
+[4]:  https://phpunit.de/manual/current/en/installation.html
+[5]:  http://nataliastanko.com/

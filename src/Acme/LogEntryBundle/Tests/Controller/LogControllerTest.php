@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\UserBundle\Tests\Controller;
+namespace Acme\LogEntryBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class LogControllerTest extends WebTestCase
 {
     public function testIndex()
     {
