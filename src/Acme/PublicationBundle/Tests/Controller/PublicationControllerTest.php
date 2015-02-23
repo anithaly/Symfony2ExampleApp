@@ -2,12 +2,19 @@
 
 namespace Acme\PublicationBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class PublicationControllerTest extends WebTestCase
+class PublicationControllerTest extends BaseControllerTest
 {
-    public function testIndex()
+    public function testGetPublications()
     {
+        $crawler = $this->client->request('GET', '/publications.json');
+
+        // Assert that the "Content-Type" header is "application/json"
+        $this->assertTrue(
+            $this->client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
     }
 
     /*

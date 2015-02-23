@@ -2,16 +2,15 @@
 
 namespace Acme\LogEntryBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Acme\PublicationBundle\Tests\Controller\BaseControllerTest;
 
-class LogControllerTest extends WebTestCase
+class LogControllerTest extends BaseControllerTest
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $crawler = $this->client->request('GET', '/log/');
 
-        $crawler = $client->request('GET', '/hello/Fabien');
-
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $heading = $crawler->filter('h1')->eq(0)->text();
+        $this->assertEquals('Log list', $heading);
     }
 }
