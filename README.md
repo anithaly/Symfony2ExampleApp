@@ -69,9 +69,19 @@ Check [http://localhost:8000][3].
 
 Install [PHPUnit][4] to run tests.
 
-Run the following commands in project root dir:
+Create test database, schema and fill it with some data:
+
+    ./app/console doctrine:database:create --env=test
+    ./app/console doctrine:schema:create --env=test
+    ./app/console doctrine:fixture:load --env=test
+
+To run tests execute the command in project root dir:
 
     phpunit -c app/ src/
+
+Delete test database:
+
+    ./app/console doctrine:database:drop --force --env=test
 
 
 License
