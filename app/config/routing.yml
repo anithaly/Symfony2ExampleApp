@@ -13,7 +13,7 @@ acme_log_entry:
 rest :
   type : rest
   resource : "routing_rest.yml"
-  # prefix : /api
+  prefix : /api
 
 #fosuser routing
 fos_user:

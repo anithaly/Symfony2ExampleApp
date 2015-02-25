@@ -7,6 +7,11 @@ fos_rest:
             json: true
         templating_formats:
             html: true
+        failed_validation: HTTP_BAD_REQUEST
+    body_listener: true
+    # format_listener: true
     format_listener:
         rules:
             - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
+    routing_loader:
+        default_format: json

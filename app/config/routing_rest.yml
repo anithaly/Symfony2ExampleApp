@@ -2,3 +2,6 @@
 rest_publications:
   type : rest
   resource: "@AcmePublicationBundle/Resources/config/routing_rest.yml"
+rest_users:
+  type : rest
+  resource: "@AcmeUserBundle/Resources/config/routing_rest.yml"

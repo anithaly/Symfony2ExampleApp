@@ -1,0 +1,6 @@
+users:
+    # resource: "@AcmeUserBundle/Controller/UserRestController.php"
+    resource:     "AcmeUserBundle:UserRest"
+    type:     rest
+    # prefix:   /users
+    name_prefix:  users_

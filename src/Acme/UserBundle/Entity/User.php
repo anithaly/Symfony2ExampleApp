@@ -27,13 +27,15 @@ class User extends BaseUser
     /**
      * @var string
      * @JMS\Expose
+     * @JMS\Groups({"Me"})
      * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"Details"})
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
