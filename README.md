@@ -46,10 +46,6 @@ Create/update tables:
 
     ./app/console doctrine:schema:update --force
 
-    or
-
-    ./app/console doctrine:migrations:migrate
-
 Load fixtures:
 
     ./app/console doctrine:fixtures:load
