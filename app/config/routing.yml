@@ -22,3 +22,6 @@ fos_user:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+ant_qa_pay_u:
+    resource: "@AntQaPayUBundle/Resources/config/routing.yml"
+    prefix:   /payment

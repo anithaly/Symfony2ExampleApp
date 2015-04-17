@@ -2,7 +2,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     symfony2example
     database_user:     root
     database_password: ~
 
@@ -17,3 +17,10 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    payu.environment: secure
+    payu.merchantPosId: 123
+    payu.posAuthKey: 456
+    payu.clientId: 09876
+    payu.clientSecret: 45678
+    payu.signatureKey: 876543

@@ -15,6 +15,17 @@ abstract class BaseControllerTest extends WebTestCase
     }
 
     public function SetUp() {
+        // $kernel = static::createKernel();
+        // $kernel->boot();
+
+        // $em = $kernel->getContainer()->get('doctrine')->getManager();
+        // $schemaTool = new SchemaTool($em);
+        // $metadata = $em->getMetadataFactory()->getAllMetadata();
+
+        // // Drop and recreate tables for all entities
+        // $schemaTool->dropSchema($metadata);
+        // $schemaTool->createSchema($metadata);
+
         $this->logIn('admin', 'test');
     }
 

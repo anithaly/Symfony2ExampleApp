@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Acme\PublicationBundle\AcmePublicationBundle(),
             new Acme\UserBundle\AcmeUserBundle(),
             new Acme\LogEntryBundle\AcmeLogEntryBundle(),
+            new AntQa\Bundle\PayUBundle\AntQaPayUBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

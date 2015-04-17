@@ -9,7 +9,7 @@ imports:
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
-    default_locale: en
+    default_locale:  "%locale%"
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -95,3 +95,9 @@ services:
 
 nelmio_api_doc:
     name: Symfony example app API
+
+payu_bundle:
+    pos_id: "%payu.clientId%"
+    pos_signature_key: "%payu.signatureKey%"
+    pos_env: fsfs #secure or custom
+    payment_class: "AntQa\Bundle\PaymentBundle\Entity\Payment"
