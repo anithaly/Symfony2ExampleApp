@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle,
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             new Acme\PublicationBundle\AcmePublicationBundle(),
             new Acme\UserBundle\AcmeUserBundle(),

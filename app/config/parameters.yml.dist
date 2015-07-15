@@ -18,6 +18,26 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
 
+    locale: en #default locale fallback
+
+    in_memory_password: password
+
+    email_sender_address: symfony@example.com
+    email_sender_name: Management App
+
+    # api keys
+    facebook_app_id: x
+    facebook_app_secret: x
+
+    google_app_id: x
+    google_app_secret: x
+
+    twitter_app_id: x
+    twitter_app_secret: x
+
+    github_app_id: x
+    github_app_secret: x
+
     payu.environment: secure
     payu.merchantPosId: 123
     payu.posAuthKey: 456

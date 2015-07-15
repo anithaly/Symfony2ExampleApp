@@ -1,9 +1,49 @@
+#HWIOAuthBundle routes
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /connect
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+facebook_login:
+    pattern: /login/check-facebook
+
+google_login:
+    pattern: /login/check-google
+
+twitter_login:
+    pattern: /login/check-twitter
+
+github_login:
+    pattern: /login/check-github
+
+#FOSUser routes
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#Nelmio routing
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+ant_qa_pay_u:
+    resource: "@AntQaPayUBundle/Resources/config/routing.yml"
+    prefix:   /payment
+
 acme_user:
     resource: "@AcmeUserBundle/Controller/"
+
 acme_publication:
     resource: "@AcmePublicationBundle/Controller/"
     type:     annotation
     prefix:   /
+
 acme_log_entry:
     resource: "@AcmeLogEntryBundle/Controller/"
     type:     annotation
@@ -14,14 +54,3 @@ rest :
   type : rest
   resource : "routing_rest.yml"
   prefix : /api
-
-#fosuser routing
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-#Nelmio routing
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
-ant_qa_pay_u:
-    resource: "@AntQaPayUBundle/Resources/config/routing.yml"
-    prefix:   /payment

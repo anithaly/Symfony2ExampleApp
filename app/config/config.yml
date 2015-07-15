@@ -5,6 +5,7 @@ imports:
     - { resource: fos_user.yml }
     - { resource: fos_rest.yml }
     - { resource: jms_serializer.yml }
+    - { resource: hwi_oauth_user.yml }
 
 framework:
     #esi:             ~

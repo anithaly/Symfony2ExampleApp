@@ -29,7 +29,8 @@
         "jms/di-extra-bundle": "@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
         "piotrantosik/payu-bundle": "dev-master",
-        "openpayu/openpayu": "dev-master"
+        "openpayu/openpayu": "dev-master",
+        "hwi/oauth-bundle": "0.4.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

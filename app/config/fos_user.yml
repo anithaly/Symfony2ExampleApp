@@ -4,6 +4,18 @@ fos_user:
     firewall_name: main
     user_class: Acme\UserBundle\Entity\User
     from_email:
-        address:        symfony@example.com
-        sender_name:    Symfony example app
+        address:        %email_sender_address%
+        sender_name:    %email_sender_name%
+    registration:
+        confirmation:
+            enabled:    false # change to true for required email confirmation
+            from_email:
+                address:        %email_sender_address%
+                sender_name:    %email_sender_name%
+    resetting:
+        email:
+            # template: AcmeDemoBundle:User:resetting.email.html.twig
+            from_email:
+                address:        %email_sender_address%
+                sender_name:    %email_sender_name%
 
